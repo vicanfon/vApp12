@@ -1,0 +1,9 @@
+<div class="grid grid-pad">
+  <h4>Pending Alarms:  7</h4>
+  <h4>Machines</h4>
+  <a *ngFor="let machine of machines" class="col-1-4" routerLink="/machines/{{machine.id}}">
+    <div class="module">
+      <h4>{{machine.name}}</h4>
+    </div>
+  </a>
+</div>
