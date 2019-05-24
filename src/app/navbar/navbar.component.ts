@@ -8,7 +8,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  title : string = 'vApp12';
+  title : string = 'Failure Manager';
 
   constructor(private authService: AuthService) { }
 

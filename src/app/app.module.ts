@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SidebarModule} from 'primeng/primeng';
 
 // to delete
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -31,6 +33,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableModule} from 'primeng/table';
 import {SliderModule} from 'primeng/slider';
+import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manual.component';
 
 
 
@@ -48,19 +51,22 @@ import {SliderModule} from 'primeng/slider';
     SigninComponent,
     MessagesComponent,
     AdminComponent,
-    SettingsComponent
+    SettingsComponent,
+    AlarmManualComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
     TableModule,
-    SliderModule
+    SliderModule,
+    SidebarModule
   ],
   providers: [DataService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]

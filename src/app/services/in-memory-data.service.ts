@@ -8,14 +8,18 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const alarms = [
-      { id: 11, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'blablabla' },
-      { id: 12, timestamp: new Date(), status: 'Activated', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'blablabla' },
-      { id: 13, timestamp: new Date(), status: 'Dismissed', code: '11', name: 'alarm 11', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'blablabla' },
-      { id: 14, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'blablabla' },
-      { id: 15, timestamp: new Date(), status: 'Intervened', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'blablabla' },
-      { id: 16, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'blablabla' }
+      { id: 11, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 12, timestamp: new Date(), status: 'Activated', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 13, timestamp: new Date(), status: 'Dismissed', code: '11', name: 'alarm 11', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 14, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 15, timestamp: new Date(), status: 'Intervened', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 16, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' }
     ];
-    return {alarms};
+    const interventions = [
+      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timeStamp: new Date(), alarmId: 15 }
+    ];
+
+    return {alarms, interventions};
   }
 
   // Overrides the genId method to ensure that a hero always has an id.

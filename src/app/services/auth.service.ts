@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
   token: string;
+  role: string;
 
   constructor(private messageService: MessageService, private router: Router) { }
 
@@ -18,8 +19,17 @@ export class AuthService {
 
   signinUser(username: string, password: string){
     // call to storage to create login and password account
-    this.router.navigate(['/dashboard']);
-    this.token = "abc"
+    if (username === "mass" && password === "1234"){
+      this.token = "abc";
+      this.role = username;
+      this.router.navigate(['/dashboard']);
+    } else if (username === "sis" && password === "1234"){
+      this.token = "abc";
+      this.role = username;
+      this.router.navigate(['/dashboard']);
+    }else {
+      this.messageService.add('User not registered');
+    }
   }
 
   getToken(){
@@ -33,5 +43,8 @@ export class AuthService {
 
   isAuthenticated(){
     return this.token != null;
+  }
+  getRole(){
+    return this.role;
   }
 }

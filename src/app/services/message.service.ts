@@ -8,7 +8,7 @@ export class MessageService {
 
   add(message: string) {
     this.messages.push(message);
-    setInterval(()=> {this.messages = []},3000);
+    setInterval(()=> {this.messages = []},5000);
   }
 
   clear(): void {

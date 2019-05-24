@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
 import {Alarm} from '../../models/alarm.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -14,11 +15,12 @@ export class AlarmComponent implements OnInit {
   alarms: Alarm[];
   cols: any[];
   selectedAlarm: Alarm;
+  closeResult: string;
+  display: boolean;
 
-  // to delete
 
 
-constructor(private alarmService: DataService) { }
+constructor(private alarmService: DataService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getAlarms();
@@ -34,6 +36,15 @@ constructor(private alarmService: DataService) { }
       { field: 'origin', header: 'Origin' }
     ];
   }
+
+  // modal
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    });
+  }
+
 
   getAlarms(): void {
     this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);

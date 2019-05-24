@@ -1,6 +1,8 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
+
+      <img class="navbar-brand" src="../../assets/images/vfos_logo.png" height="100" width="100"/>
       <a href="#" class="navbar-brand">
         {{title}}
       </a>
@@ -23,7 +25,7 @@
           <li><a routerLink="/signin">Login</a></li>
         </ng-template>
         <li *ngIf="authService.isAuthenticated()"><a style="cursor:pointer;" (click)="onLogout()" >Logout</a></li>
-        <li class="dropdown" *ngIf="authService.isAuthenticated()">
+        <li class="dropdown" *ngIf="authService.getRole()==='mass'">
           <a routerLinkActive="active" routerLink="/master-data">Settings</a>
           <!--<a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">

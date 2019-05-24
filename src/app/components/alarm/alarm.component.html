@@ -1,48 +1,65 @@
-
-<div class="row">
-  <div class="col-md-5">
-    <!--<ul class="heroes">
-      <li *ngFor="let alarm of alarms"
-          (click)="onSelect(alarm)">
-        <span class="badge">{{alarm.id}}</span> {{alarm.name}}
-      </li>
-    </ul>-->
-    <!--<flx-ui-datatable [headers]="['timestamp','status','code','name','type','machine','company','origin']"></flx-ui-datatable>-->
-    <!--<ag-grid-angular
-    style="width:700px; height: 200px;"
-    class="ag-theme-bootstrap"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    ></ag-grid-angular>-->
-    <p-table #dt [columns]="cols" [value]="alarms" selectionMode="single" [(selection)]="selectedAlarm" [paginator]="true" [rows]="5">
-      <ng-template pTemplate="caption">
-        <div style="text-align: right">
-          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-          <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th *ngFor="let col of columns">
-            {{col.header}}
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-alarm>
-        <tr [pSelectableRow]="alarm">
-          <td>{{alarm.timestamp | date:'medium'}}</td>
-          <td>{{alarm.status}}</td>
-          <td>{{alarm.code}}</td>
-          <td>{{alarm.name}}</td>
-          <td>{{alarm.type}}</td>
-          <td>{{alarm.machine}}</td>
-          <td>{{alarm.company}}</td>
-          <td>{{alarm.origin}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+<div>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Last alarms</h2>
+      <h5>Select one row to get more details:</h5>
+    </div>
+    <div class="col-md-4">
+<!--
+      <button class="btn btn-primary" (click)="display = true" pButton icon="pi pi-plus">Create Manual Alarm</button>
+-->
+      <a class="btn btn-primary" routerLink="/createAlarm">Create Alarm</a>
+    </div>
   </div>
-  <div class="col-md-7">
-    <app-alarm-detail [alarm]="selectedAlarm"></app-alarm-detail>
+  <div class="row">
+    <div class="col-md-8">
+      <!--<ul class="heroes">
+        <li *ngFor="let alarm of alarms"
+            (click)="onSelect(alarm)">
+          <span class="badge">{{alarm.id}}</span> {{alarm.name}}
+        </li>
+      </ul>-->
+      <!--<flx-ui-datatable [headers]="['timestamp','status','code','name','type','machine','company','origin']"></flx-ui-datatable>-->
+      <!--<ag-grid-angular
+      style="width:700px; height: 200px;"
+      class="ag-theme-bootstrap"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      ></ag-grid-angular>-->
+      <p-table #dt [columns]="cols" [value]="alarms" selectionMode="single" [(selection)]="selectedAlarm" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-alarm>
+          <tr [pSelectableRow]="alarm">
+            <td>{{alarm.timestamp | date:'medium'}}</td>
+            <td>{{alarm.status}}</td>
+            <td>{{alarm.code}}</td>
+            <td>{{alarm.name}}</td>
+            <td>{{alarm.type}}</td>
+            <td>{{alarm.machine}}</td>
+            <td>{{alarm.company}}</td>
+            <td>{{alarm.origin}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="col-md-4">
+      <app-alarm-detail [alarm]="selectedAlarm"></app-alarm-detail>
+    </div>
   </div>
+  <!--<p-sidebar [(visible)]="display" position="right" styleClass="ui-sidebar-md">
+    <app-alarm-manual></app-alarm-manual>
+  </p-sidebar>-->
 </div>

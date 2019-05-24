@@ -1,29 +1,64 @@
 <form *ngIf="alarm">
-  <div class="form-row">
-    <h2>{{alarm.name}} Details</h2>
+  <div class="row">
+    <h3>{{alarm.name}} details</h3>
   </div>
-  <div class="form-row">
+  <div class="row">
     <div class="form-group col-md-6">
-      <label class="form-control" for="timestamp">Timestamp</label>
+      <span for="timestamp">Timestamp</span>
       <input type="text" id="timestamp" name="timestamp" [value]="alarm.timestamp" readonly>
     </div>
     <div class="form-group col-md-6">
-      <label class="form-control" for="status">Status</label>
+      <span for="status">Status</span>
       <input type="text" id="status" name="status" [value]="alarm.status" readonly>
     </div>
   </div>
-
-  <div><span>alarm code:</span>{{alarm.code}}</div>
-  <div><span>alarm name:</span>{{alarm.name}}</div>
-  <div><span>alarm type:</span>{{alarm.type}}</div>
-  <div><span>Machine:</span>{{alarm.machine}}</div>
-  <div><span>Company:</span>{{alarm.company}}</div>
-  <div><span>alarm origin:</span>{{alarm.origin}}</div>
-  <div>
-    <ul>
-      <li><div><span>alarm comment:</span>{{alarm.comment}}</div></li>
-    </ul>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <span for="code">Alarm Code</span>
+      <input type="text" id="code" name="code" [value]="alarm.code" readonly>
+    </div>
+    <div class="form-group col-md-6">
+      <span for="type">Type</span>
+      <input type="text" id="type" name="type" [value]="alarm.type" readonly>
+    </div>
   </div>
-  <button class="btn btn-primary" type="submit">Sign In</button>
-
+  <div class="row">
+    <div class="form-group col-md-12">
+      <span for="name">Name</span>
+      <input type="text" id="name" name="name" [value]="alarm.name" readonly>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <span for="machine">Machine</span>
+      <input type="text" id="machine" name="machine" [value]="alarm.machine" readonly>
+    </div>
+    <div class="form-group col-md-6">
+      <span for="company">Company</span>
+      <input type="text" id="company" name="company" [value]="alarm.company" readonly>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <span for="origin">Origin</span>
+      <input type="text" id="origin" name="origin" [value]="alarm.origin" readonly>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <span for="comment">Comment:</span>
+      <textarea style="height: 100px;" id="comment" name="comment" [value]="alarm.comment" [readOnly]="alarm.status == 'Detected'"></textarea>
+    </div>
+  </div>
+  <div class="row" *ngIf="authService.getRole()!='mass' && alarm.status == 'Intervened'">
+    <div class="form-group col-md-6">
+      <a>Proposed Intervention:</a>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary orange" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="activateAlarm()">Activate</button>
+    <button class="btn btn-primary blue" type="submit" *ngIf="authService.getRole()=='mass' && alarm.status == 'Validated'" (click)="interveneAlarm()">Intervene</button>
+    <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Intervened'" (click)="dismissAlarm()">Dismiss</button>
+    <button class="btn btn-primary red" type="submit" *ngIf="authService.getRole()!='mass'&& alarm.status == 'Intervened'" (click)="rejectAlarm()">Reject</button>
+  </div>
 </form>

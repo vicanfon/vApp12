@@ -9,6 +9,7 @@ import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {SettingsComponent} from './components/settings/settings.component';
+import {AlarmManualComponent} from './components/alarm/alarm-manual/alarm-manual.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'actions', component: ActionComponent, canActivate: [AuthGuardService] },
   { path: 'master-data', component: SettingsComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'signin', component: SigninComponent }
+  { path: 'signin', component: SigninComponent },
+  { path: 'createAlarm', component: AlarmManualComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
