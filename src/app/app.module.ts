@@ -13,11 +13,9 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AlarmComponent } from './components/alarm/alarm.component';
-import { ActionComponent } from './components/action/action.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AlarmDetailComponent } from './components/alarm/alarm-detail/alarm-detail.component';
-import { ActionDetailComponent } from './components/action/action-detail/action-detail.component';
 import { MachineComponent } from './components/machine/machine.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -34,6 +32,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableModule} from 'primeng/table';
 import {SliderModule} from 'primeng/slider';
 import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manual.component';
+import { InterventionComponent } from './components/intervention/intervention.component';
+import { InterventionDetailComponent } from './components/intervention/intervention-detail/intervention-detail.component';
+import { InterventionManualComponent } from './components/intervention/intervention-manual/intervention-manual.component';
 
 
 
@@ -41,18 +42,19 @@ import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manu
   declarations: [
     AppComponent,
     AlarmComponent,
-    ActionComponent,
     DashboardComponent,
     NavbarComponent,
     AlarmDetailComponent,
-    ActionDetailComponent,
     MachineComponent,
     SignupComponent,
     SigninComponent,
     MessagesComponent,
     AdminComponent,
     SettingsComponent,
-    AlarmManualComponent
+    AlarmManualComponent,
+    InterventionComponent,
+    InterventionDetailComponent,
+    InterventionManualComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 16, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' }
     ];
     const interventions = [
-      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timeStamp: new Date(), alarmId: 15 }
+      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '15', alarmName: 'alarm 15' }
     ];
 
     return {alarms, interventions};
