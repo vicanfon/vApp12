@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {SidebarModule} from 'primeng/primeng';
 
 // to delete
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -25,16 +24,23 @@ import { MessagesComponent } from './components/messages/messages.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manual.component';
+import { InterventionComponent } from './components/intervention/intervention.component';
+import { InterventionDetailComponent } from './components/intervention/intervention-detail/intervention-detail.component';
+import { InterventionManualComponent } from './components/intervention/intervention-manual/intervention-manual.component';
+
 
 
 //table
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableModule} from 'primeng/table';
 import {SliderModule} from 'primeng/slider';
-import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manual.component';
-import { InterventionComponent } from './components/intervention/intervention.component';
-import { InterventionDetailComponent } from './components/intervention/intervention-detail/intervention-detail.component';
-import { InterventionManualComponent } from './components/intervention/intervention-manual/intervention-manual.component';
+import {ChartModule} from 'primeng/chart';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
+import {ButtonModule} from 'primeng/button';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -54,7 +60,8 @@ import { InterventionManualComponent } from './components/intervention/intervent
     AlarmManualComponent,
     InterventionComponent,
     InterventionDetailComponent,
-    InterventionManualComponent
+    InterventionManualComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -68,9 +75,13 @@ import { InterventionManualComponent } from './components/intervention/intervent
     ),
     TableModule,
     SliderModule,
-    SidebarModule
+    ChartModule,
+    DynamicDialogModule,
+    ButtonModule,
+    DialogModule
   ],
-  providers: [DataService, AuthService, AuthGuardService],
-  bootstrap: [AppComponent]
+  providers: [DataService, AuthService, AuthGuardService, DialogService, DynamicDialogRef, DynamicDialogConfig],
+  bootstrap: [AppComponent],
+  entryComponents: [AlarmDetailComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ import {SettingsComponent} from './components/settings/settings.component';
 import {AlarmManualComponent} from './components/alarm/alarm-manual/alarm-manual.component';
 import {InterventionComponent} from './components/intervention/intervention.component';
 import {InterventionManualComponent} from './components/intervention/intervention-manual/intervention-manual.component';
+import {InterventionDetailComponent} from './components/intervention/intervention-detail/intervention-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'alarms', component: AlarmComponent, canActivate: [AuthGuardService] },
   { path: 'machines/:id', component: MachineComponent, canActivate: [AuthGuardService] },
   { path: 'interventions', component: InterventionComponent, canActivate: [AuthGuardService] },
+  { path: 'interventions/:id', component: InterventionDetailComponent, canActivate: [AuthGuardService] },
   { path: 'master-data', component: SettingsComponent, canActivate: [AuthGuardService] },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },

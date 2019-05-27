@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import {Alarm} from '../../models/alarm.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {DialogService} from 'primeng/api';
+import {AlarmDetailComponent} from './alarm-detail/alarm-detail.component';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class AlarmComponent implements OnInit {
 
 
 
-constructor(private alarmService: DataService, private modalService: NgbModal) { }
+constructor(private alarmService: DataService, public dialogService: DialogService) { }
 
   ngOnInit() {
     this.getAlarms();
@@ -37,14 +39,14 @@ constructor(private alarmService: DataService, private modalService: NgbModal) {
     ];
   }
 
-  // modal
-
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
+  show(event) {
+    const ref = this.dialogService.open(AlarmDetailComponent, {
+      data: event.data,
+      header: 'Alarm detail',
+      width: '85%'
     });
+    ref.onClose.subscribe(x => console.log(x));
   }
-
 
   getAlarms(): void {
     this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);

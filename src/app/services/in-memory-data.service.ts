@@ -19,7 +19,26 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '15', alarmName: 'alarm 15' }
     ];
 
-    return {alarms, interventions};
+    const alarmtypes= [
+      { code: 11, name: "name 1" },
+      { code: 12, name: "name 2" },
+      { code: 13, name: "name 3" }
+    ];
+
+    const machines = [
+      { id: 1, name: "M1" },
+      { id: 2, name: "M2" },
+      { id: 3, name: "M3" }
+    ];
+    const failuretypes = [
+      { id: 1, name: "Failure 1" },
+      { id: 2, name: "Failure 2" },
+      { id: 3, name: "Failure 3" }
+    ];
+
+    const stats = { nDetected: 2, nActivated: 1, nIntervened: 3, nDismissed: 2, nRejected: 1, avgSolvingTime: 1.5, frequentFailureTypes: [{code:'12', frequency: 0.3}] }
+
+    return {alarms, interventions, stats, alarmtypes, machines, failuretypes};
   }
 
   // Overrides the genId method to ensure that a hero always has an id.

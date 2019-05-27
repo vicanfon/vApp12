@@ -1,32 +1,16 @@
 <div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       <h2>Last alarms</h2>
       <h5>Select one row to get more details:</h5>
     </div>
-    <div class="col-md-4">
-<!--
-      <button class="btn btn-primary" (click)="display = true" pButton icon="pi pi-plus">Create Manual Alarm</button>
--->
+    <div class="col-md-8 text-right">
       <a class="btn btn-primary" routerLink="/createAlarm">Create Alarm</a>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
-      <!--<ul class="heroes">
-        <li *ngFor="let alarm of alarms"
-            (click)="onSelect(alarm)">
-          <span class="badge">{{alarm.id}}</span> {{alarm.name}}
-        </li>
-      </ul>-->
-      <!--<flx-ui-datatable [headers]="['timestamp','status','code','name','type','machine','company','origin']"></flx-ui-datatable>-->
-      <!--<ag-grid-angular
-      style="width:700px; height: 200px;"
-      class="ag-theme-bootstrap"
-      [rowData]="rowData"
-      [columnDefs]="columnDefs"
-      ></ag-grid-angular>-->
-      <p-table #dt [columns]="cols" [value]="alarms" selectionMode="single" [(selection)]="selectedAlarm" [paginator]="true" [rows]="5">
+    <div class="col-md-12">
+      <p-table #dt (onRowSelect)="show($event)" [columns]="cols" [value]="alarms" selectionMode="single" [responsive]="true" [(selection)]="selectedAlarm" [paginator]="true" [rows]="5">
         <ng-template pTemplate="caption">
           <div style="text-align: right">
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -38,6 +22,17 @@
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
               {{col.header}}
               <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input style="width: 100%" *ngSwitchCase="'status'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input style="width: 100%" *ngSwitchCase="'code'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input style="width: 100%" *ngSwitchCase="'name'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input style="width: 100%" *ngSwitchCase="'type'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input style="width: 100%" *ngSwitchCase="'machine'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input style="width: 100%" *ngSwitchCase="'company'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input style="width: 100%" *ngSwitchCase="'origin'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
             </th>
           </tr>
         </ng-template>
@@ -55,9 +50,9 @@
         </ng-template>
       </p-table>
     </div>
-    <div class="col-md-4">
+    <!--<div class="col-md-4">
       <app-alarm-detail [alarm]="selectedAlarm"></app-alarm-detail>
-    </div>
+    </div>-->
   </div>
   <!--<p-sidebar [(visible)]="display" position="right" styleClass="ui-sidebar-md">
     <app-alarm-manual></app-alarm-manual>

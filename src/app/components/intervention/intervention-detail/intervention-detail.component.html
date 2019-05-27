@@ -1,0 +1,34 @@
+<form *ngIf="intervention">
+  <!--<div class="row">
+    <button class="btn grey"(click)="goBack()">go back</button>
+  </div>-->
+  <div class="row">
+    <h3>Intervention details</h3>
+    <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass'" (click)="closeAlarm()">Reject</button>
+    <button class="btn btn-primary red" type="submit" *ngIf="authService.getRole()!='mass'" (click)="rejectIntervention()">Reject</button>
+    <button class="btn blue" type="submit" *ngIf="authService.getRole()=='mass'" (click)="editIntervention()">Save</button>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <span for="timestamp">Timestamp</span>
+      <input type="text" id="timestamp" name="timestamp" [value]="intervention.timestamp" readonly>
+    </div>
+    <div class="form-group col-md-3">
+      <span for="duration">Duration</span>
+      <input type="text" id="duration" name="duration" [value]="intervention.duration" readonly>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <span for="solution">Solution</span>
+      <textarea type="text" id="solution" name="solution" [value]="intervention.solution" readonly></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <span for="comment">Comment</span>
+      <textarea type="text" id="comment" name="comment" style="height: 150px" [value]="intervention.comment" [readonly]="authService.getRole()!='mass'"></textarea>
+    </div>
+  </div>
+
+</form>

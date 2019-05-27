@@ -1,38 +1,31 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-
+  <div class="container-fluid" >
+    <div class="navbar-header" >
       <img class="navbar-brand" src="../../assets/images/vfos_logo.png" height="100" width="100"/>
-      <a href="#" class="navbar-brand">
+      <a href="#" class="navbar-brand" style="color: white; align-content: center">
         {{title}}
       </a>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+    <div>
+      <!--<ul class="nav navbar-nav">
+        <li *ngIf="authService.isAuthenticated()">
+          <a routerLinkActive="active" routerLink="/dashboard" style="color: white;">Dashboard</a>
         </li>
-        <li>
-          <a routerLinkActive="active" routerLink="/alarms">Alarms</a>
+        <li *ngIf="authService.isAuthenticated()">
+          <a routerLinkActive="active" routerLink="/alarms" style="color: white;">Alarms</a>
         </li>
-        <li>
-          <a routerLinkActive="active" routerLink="/interventions">Interventions</a>
+        <li *ngIf="authService.isAuthenticated()">
+          <a routerLinkActive="active" routerLink="/interventions" style="color: white;">Interventions</a>
         </li>
-      </ul>
+      </ul>-->
       <ul class="nav navbar-nav navbar-right">
         <ng-template [ngIf]="!authService.isAuthenticated()">
-          <li><a routerLink="/signup">Register</a></li>
-          <li><a routerLink="/signin">Login</a></li>
+          <li><a routerLink="/signup" style="color: white;">Register</a></li>
+          <li><a routerLink="/signin" style="color: white;">Login</a></li>
         </ng-template>
-        <li *ngIf="authService.isAuthenticated()"><a style="cursor:pointer;" (click)="onLogout()" >Logout</a></li>
-        <li class="dropdown" *ngIf="authService.getRole()==='mass' && authService.isAuthenticated()">
-          <a routerLinkActive="active" routerLink="/master-data">Settings</a>
-          <!--<a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li></li>
-          </ul>-->
-        </li>
+        <li *ngIf="authService.isAuthenticated()"><a style="cursor:pointer; color: white;" (click)="onLogout()" >Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
