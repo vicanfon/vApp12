@@ -6,7 +6,7 @@
     <div class="col-md-2" *ngIf="authService.isAuthenticated()">
       <app-toolbar></app-toolbar>
     </div>
-    <div class="col-md-10 col-md-12">
+    <div [ngClass]="formatMain()" lass="col-md-10">
       <router-outlet></router-outlet>
     </div>
     </div>

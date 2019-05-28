@@ -8,4 +8,11 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent {
   constructor(private authService: AuthService){}
+
+  formatMain(){
+    if (this.authService.isAuthenticated()){
+      return "col-md-10";
+    }else
+      return "col-md-12";
+  }
 }

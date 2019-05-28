@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import {Machine} from '../../models/machine.model';
 import {Stats} from '../../models/stats.model';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   stats: Stats;
   data: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getMachines();
