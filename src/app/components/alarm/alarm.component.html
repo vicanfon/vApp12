@@ -5,7 +5,7 @@
       <h5>Select one row to get more details:</h5>
     </div>
     <div class="col-md-8 text-right">
-      <a class="btn btn-primary" routerLink="/createAlarm">Create Alarm</a>
+      <a *ngIf="authService.getRole()!='mass'" class="btn btn-primary" routerLink="/createAlarm">Create Alarm</a>
     </div>
   </div>
   <div class="row">

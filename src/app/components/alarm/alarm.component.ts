@@ -5,6 +5,7 @@ import {Alarm} from '../../models/alarm.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DialogService} from 'primeng/api';
 import {AlarmDetailComponent} from './alarm-detail/alarm-detail.component';
+import {AuthService} from '../../services/auth.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class AlarmComponent implements OnInit {
 
 
 
-constructor(private alarmService: DataService, public dialogService: DialogService) { }
+constructor(private alarmService: DataService, private authService: AuthService, public dialogService: DialogService) { }
 
   ngOnInit() {
     this.getAlarms();
