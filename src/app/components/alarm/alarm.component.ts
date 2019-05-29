@@ -43,7 +43,8 @@ constructor(private alarmService: DataService, public dialogService: DialogServi
     const ref = this.dialogService.open(AlarmDetailComponent, {
       data: event.data,
       header: 'Alarm detail',
-      width: '85%'
+      width: '85%',
+      contentStyle: {'max-height': '95vw', 'overflow': 'auto'}
     });
     ref.onClose.subscribe(x => console.log(x));
   }
