@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class AuthService {
   token: string;
   role: string;
+  company: string;
 
   constructor(private messageService: MessageService, private router: Router) { }
 
@@ -22,10 +23,12 @@ export class AuthService {
     if (username === "mass" && password === "1234"){
       this.token = "abc";
       this.role = username;
+      this.company = username;
       this.router.navigate(['/dashboard']);
     } else if (username === "sis" && password === "1234"){
       this.token = "abc";
       this.role = username;
+      this.company = username;
       this.router.navigate(['/dashboard']);
     }else {
       this.messageService.add('User not registered');
@@ -46,5 +49,8 @@ export class AuthService {
   }
   getRole(){
     return this.role;
+  }
+  getCompany(){
+    return this.company;
   }
 }

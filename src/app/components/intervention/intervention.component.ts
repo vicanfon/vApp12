@@ -35,7 +35,11 @@ export class InterventionComponent implements OnInit {
       { field: 'solution', header: 'Solution' },
       { field: 'duration', header: 'Duration' },
       { field: 'alarmCode', header: 'Alarm Code' },
-      { field: 'alarmName', header: 'Alarm Name' }
+      { field: 'alarmName', header: 'Alarm Name' },
+      { field: 'alarmType', header: 'Alarm Type' },
+      { field: 'machine', header: 'Machine' },
+      { field: 'company', header: 'Company' },
+      { field: 'status', header: 'State' }
     ];
   }
 

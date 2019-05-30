@@ -16,7 +16,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AlarmDetailComponent } from './components/alarm/alarm-detail/alarm-detail.component';
 import { MachineComponent } from './components/machine/machine.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import {DataService} from './services/data.service';
 import {AuthService} from './services/auth.service';
@@ -28,10 +27,11 @@ import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manu
 import { InterventionComponent } from './components/intervention/intervention.component';
 import { InterventionDetailComponent } from './components/intervention/intervention-detail/intervention-detail.component';
 import { InterventionManualComponent } from './components/intervention/intervention-manual/intervention-manual.component';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
-//table
+// table
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableModule} from 'primeng/table';
 import {SliderModule} from 'primeng/slider';
@@ -41,6 +41,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
+import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { UserNewComponent } from './components/user/user-new/user-new.component';
 
 
 
@@ -52,7 +55,6 @@ import {DialogModule} from 'primeng/dialog';
     NavbarComponent,
     AlarmDetailComponent,
     MachineComponent,
-    SignupComponent,
     SigninComponent,
     MessagesComponent,
     AdminComponent,
@@ -61,7 +63,10 @@ import {DialogModule} from 'primeng/dialog';
     InterventionComponent,
     InterventionDetailComponent,
     InterventionManualComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    UserComponent,
+    UserDetailComponent,
+    UserNewComponent
   ],
   imports: [
     BrowserModule,
@@ -78,10 +83,11 @@ import {DialogModule} from 'primeng/dialog';
     ChartModule,
     DynamicDialogModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
   ],
   providers: [DataService, AuthService, AuthGuardService, DialogService, DynamicDialogRef, DynamicDialogConfig],
   bootstrap: [AppComponent],
-  entryComponents: [AlarmDetailComponent]
+  entryComponents: [AlarmDetailComponent, UserDetailComponent, UserNewComponent]
 })
 export class AppModule { }

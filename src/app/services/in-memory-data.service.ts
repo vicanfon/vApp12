@@ -13,10 +13,13 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 13, timestamp: new Date(), status: 'Dismissed', code: '11', name: 'alarm 11', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
       { id: 14, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
       { id: 15, timestamp: new Date(), status: 'Intervened', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
-      { id: 16, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' }
+      { id: 16, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 16, timestamp: new Date(), status: 'Accepted', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 16, timestamp: new Date(), status: 'Rejected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' }
     ];
     const interventions = [
-      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '15', alarmName: 'alarm 15' }
+      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '15', alarmName: 'alarm 15', alarmType: '12', machine: 'M1', company: 'SIS', status: 'open' },
+      { id: 12, solution: "press B", comment: 'You have to press B to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '10', alarmName: 'alarm 11', alarmType: '11', machine: 'M2', company: 'SIS', status: 'close' }
     ];
 
     const alarmtypes= [
@@ -36,9 +39,15 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 3, name: "Failure 3" }
     ];
 
-    const stats = { nDetected: 2, nActivated: 1, nIntervened: 3, nDismissed: 2, nRejected: 1, avgSolvingTime: 1.5, frequentFailureTypes: [{code:'12', frequency: 0.3}] }
+    const stats = { nDetected: 2, nActivated: 5, nIntervened: 3, nDismissed: 2, nRejected: 1, avgSolvingTime: 1.5, frequentFailureTypes: [{code:'12', frequency: 0.3}] }
 
-    return {alarms, interventions, stats, alarmtypes, machines, failuretypes};
+    const users = [
+      { mail: 'pepe@mass.com', name: 'Pepe Pons', role: 'mass', company: 'MASS' },
+      { mail: 'juan@mass.com', name: 'Juan Garcia', role: 'mass', company: 'MASS' },
+      { mail: 'antonio@mass.com', name: 'AntonioPerez', role: 'sis', company: 'SIS' }
+    ];
+
+    return {alarms, interventions, stats, alarmtypes, machines, failuretypes, users};
   }
 
   // Overrides the genId method to ensure that a hero always has an id.

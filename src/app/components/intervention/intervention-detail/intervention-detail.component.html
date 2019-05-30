@@ -4,7 +4,7 @@
   </div>-->
   <div class="row">
     <h3>Intervention details</h3>
-    <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass'" (click)="closeAlarm()">Reject</button>
+    <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass'" (click)="closeAlarm()">Accept</button>
     <button class="btn btn-primary red" type="submit" *ngIf="authService.getRole()!='mass'" (click)="rejectIntervention()">Reject</button>
     <button class="btn blue" type="submit" *ngIf="authService.getRole()=='mass'" (click)="editIntervention()">Save</button>
   </div>

@@ -8,9 +8,9 @@ import {MACHINES} from '../models/mock-machines';
 import {Machine} from '../models/machine.model';
 import {Intervention} from '../models/intervention.model';
 import {Stats} from '../models/stats.model';
-import {FrequentFailure} from '../models/stats.model';
 import {AlarmType} from '../models/alarm-type.model';
 import {FailureType} from '../models/failure-type';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,7 @@ export class DataService {
   private failureTypesUrl = 'api/failuretypes';  // URL to web api
   private machinesUrl = 'api/machines';  // URL to web api
   private alarmTypesUrl = 'api/alarmtypes';  // URL to web api
+  private usersUrl = 'api/users';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
@@ -42,7 +43,7 @@ export class DataService {
     return this.http.get<Intervention[]>(this.interventionUrl);
   }
   getIntervention(id:number): Observable<Intervention> {
-    return of(new Intervention(id, 'haz esto', 'debes hacer esto', new Date(), 1.5, '12', 'alarm 12'));
+    return of(new Intervention(id, 'haz esto', 'debes hacer esto', new Date(), 1.5, '12', 'alarm 12', '11', 'M1','SIS','open'));
   }
 
   // data structures
@@ -68,6 +69,21 @@ export class DataService {
 
   getMachine(id: number): Observable<Machine> {
     return of(new Machine(id, 'prueba'));
+  }
+
+  // get users
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl);
+  }
+  createUser(){
+    return this.http.get<User>(this.usersUrl);
+  }
+  saveUser(){
+    return this.http.get<User>(this.usersUrl);
+  }
+  deleteUser(){
+    return this.http.get<User>(this.usersUrl);
   }
 
 }

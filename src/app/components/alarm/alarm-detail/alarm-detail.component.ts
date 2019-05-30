@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {DataService} from '../../../services/data.service';
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
 import {InterventionManualComponent} from '../../intervention/intervention-manual/intervention-manual.component';
+import {InterventionDetailComponent} from '../../intervention/intervention-detail/intervention-detail.component';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -53,7 +54,16 @@ export class AlarmDetailComponent implements OnInit {
     const ref = this.dialogService.open(InterventionManualComponent, {
       header: 'Create Intervention',
       width: '85%',
-      contentStyle: {"max-height": "500px", "overflow": "auto"}
+      contentStyle: {"max-height": "90vw", "overflow": "auto"}
+    });
+  }
+
+  currentIntervention(){
+    const ref = this.dialogService.open(InterventionDetailComponent, {
+      data: {alarmid: this.alarm.id },
+      header: 'Create Intervention',
+      width: '85%',
+      contentStyle: {"max-height": "90vw", "overflow": "auto"}
     });
   }
 }

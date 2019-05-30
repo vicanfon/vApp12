@@ -37,8 +37,16 @@ export class InterventionDetailComponent implements OnInit {
     // send notification to mass
   }
 
-  getIntervention(): void {
+  /*getIntervention(): void {
+    this.config.data
     const id = +this.route.snapshot.paramMap.get('id');
+    if (id > 0) {
+      this.dataService.getIntervention(id).subscribe(intervention => this.intervention = intervention);
+      this.fromAlarms = true;
+    }
+  }*/
+  getIntervention(): void {
+    const id = +this.config.data.alarmid;
     if (id > 0) {
       this.dataService.getIntervention(id).subscribe(intervention => this.intervention = intervention);
       this.fromAlarms = true;

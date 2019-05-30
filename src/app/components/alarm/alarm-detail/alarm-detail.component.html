@@ -6,9 +6,7 @@
     <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="activateAlarm()">Activate</button>
     <button class="btn orange" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="dismissAlarm()">Dismiss</button>
     <button (click)="showIntervention()" class="btn btn-primary blue" type="submit" *ngIf="authService.getRole()=='mass' && (alarm.status == 'Activated' || alarm.status == 'Rejected')" (click)="interveneAlarm()">Intervene</button>
-    <div class="row right-align" *ngIf="alarm.status == 'Intervened'">
-        <a class="btn blue" routerLink="/interventions/{{alarm.id}}">Intervention</a>
-    </div>
+    <button (click)="currentIntervention()" *ngIf="alarm.status == 'Intervened'" class="btn blue">Intervention</button>
   </div>
   <div class="row">
     <div class="form-group col-md-3">
