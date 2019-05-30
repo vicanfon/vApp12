@@ -3,5 +3,6 @@ export enum Status {
   Activated = 'Activated',
   Intervened = 'Intervened',
   Dismissed = 'Dismissed',
-  Rejected = 'Rejected'
+  Rejected = 'Rejected',
+  Accepted = 'Accepted'
 }

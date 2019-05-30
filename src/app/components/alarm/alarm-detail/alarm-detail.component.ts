@@ -5,6 +5,7 @@ import {DataService} from '../../../services/data.service';
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
 import {InterventionManualComponent} from '../../intervention/intervention-manual/intervention-manual.component';
 import {InterventionDetailComponent} from '../../intervention/intervention-detail/intervention-detail.component';
+import {FailureType} from '../../../models/failure-type';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -14,14 +15,17 @@ import {InterventionDetailComponent} from '../../intervention/intervention-detai
 export class AlarmDetailComponent implements OnInit {
 
   @Input() alarm: Alarm;
+  types: FailureType[];
+  selectedType: FailureType;
 
   constructor(private authService: AuthService, private dataService: DataService, private dialogService: DialogService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
 
 
   ngOnInit() {
     if (!this.alarm){
-      this.alarm= this.config.data;
+      this.alarm = this.config.data;
     }
+    this.dataService.getFailureTypes().subscribe(failuretypes => this.types = failuretypes);
   }
   activateAlarm(){
     //change status
@@ -46,6 +50,12 @@ export class AlarmDetailComponent implements OnInit {
     // send notification to mass
   }
 
+  saveAlarm(){
+    //change status
+    //save alarm
+    // send notification to mass
+  }
+
   getLastIntervention(alarmId: number){
     this.dataService.getIntervention(alarmId);
   }
@@ -61,7 +71,7 @@ export class AlarmDetailComponent implements OnInit {
   currentIntervention(){
     const ref = this.dialogService.open(InterventionDetailComponent, {
       data: {alarmid: this.alarm.id },
-      header: 'Create Intervention',
+      header: 'Intervention',
       width: '85%',
       contentStyle: {"max-height": "90vw", "overflow": "auto"}
     });

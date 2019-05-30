@@ -35,9 +35,9 @@ export class AlarmManualComponent implements OnInit {
     const status = 'Activated';
     const code = form.value.code.code;
     const name = form.value.name;
-    const type = form.value.type;
+    const type = ""; // esto lo asigna MASS
     const machine= form.value.machine;
-    const company = form.value.company;
+    const company = this.authService.getCompany();
     const origin = "manual";
     this.dataService.createAlarm(timestamp,status,code,name,type, machine, company, origin);
     form.reset();

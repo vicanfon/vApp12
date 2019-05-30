@@ -12,4 +12,5 @@ export interface Alarm {
   machine: string;
   company: string;
   origin: string;
+  comment: string;
 }

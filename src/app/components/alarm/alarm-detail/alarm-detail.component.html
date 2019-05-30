@@ -7,6 +7,7 @@
     <button class="btn orange" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="dismissAlarm()">Dismiss</button>
     <button (click)="showIntervention()" class="btn btn-primary blue" type="submit" *ngIf="authService.getRole()=='mass' && (alarm.status == 'Activated' || alarm.status == 'Rejected')" (click)="interveneAlarm()">Intervene</button>
     <button (click)="currentIntervention()" *ngIf="alarm.status == 'Intervened'" class="btn blue">Intervention</button>
+    <button (click)="saveAlarm()" *ngIf="authService.getCompany()=='mass'" class="btn btn-primary right-aligned">Save</button>
   </div>
   <div class="row">
     <div class="form-group col-md-3">
@@ -31,9 +32,9 @@
       <span for="name">Name</span>
       <input type="text" id="name" name="name" [value]="alarm.name" readonly>
     </div>
-    <div class="form-group col-md-3">
-      <span for="type">Type</span>
-      <input type="text" id="type" name="type" [value]="alarm.type" readonly>
+    <div *ngIf="authService.getCompany()=='mass'" class="form-group col-md-3">
+      <span for="type">Type</span><tr></tr>
+      <p-dropdown name="type" [options]="types" [(ngModel)]="selectedType" placeholder="Select a type" optionLabel="name" [showClear]="true"></p-dropdown>
     </div>
   </div>
   <div class="row">
