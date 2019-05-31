@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Intervention } from '../../../models/intervention.model';
 import {NgForm} from '@angular/forms';
 import {DataService} from '../../../services/data.service';
+import {AuthService} from '../../../services/auth.service';
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
 
 @Component({
   selector: 'app-intervention-manual',
@@ -11,22 +13,26 @@ import {DataService} from '../../../services/data.service';
 export class InterventionManualComponent implements OnInit {
 
   timestamp: Date = new Date();
-  constructor(public dataService: DataService) { }
+  alarmid: number;
+
+  constructor(public dataService: DataService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+
 
   ngOnInit() {
+      this.alarmid = this.config.data.id;
   }
 
   createIntervention(form: NgForm){
     const timestamp = form.value.timestamp;
-    const status = 'Activated';
-    const code = form.value.code;
-    const name = form.value.name;
-    const type = form.value.type;
-    const machine= form.value.machine;
-    const company = form.value.company;
-    const origin = "manual";
-    this.dataService.createAlarm(timestamp,status,code,name,type, machine, company, origin);
+    const status = 'Open';
+    const duration = form.value.code;
+    const solution = form.value.name;
+    this.dataService.createIntervention(solution,timestamp,duration,this.alarmid,status);
     form.reset();
+    this.ref.close();
+  }
+  close(){
+    this.ref.close();
   }
 
 }

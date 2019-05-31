@@ -6,6 +6,7 @@ import {AlarmType} from '../../../models/alarm-type.model';
 import {FailureType} from '../../../models/failure-type';
 import {Machine} from '../../../models/machine.model';
 import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-alarm-manual',
@@ -20,7 +21,7 @@ export class AlarmManualComponent implements OnInit {
   selectedType: FailureType;
   machines: Machine[];
   selectedMachine: Machine;
-  constructor(public dataService: DataService, public authService: AuthService) { }
+  constructor(public dataService: DataService, public authService: AuthService, private  router: Router) { }
 
   ngOnInit() {
     this.dataService.getAlarmTypes().subscribe(alarmtypes => this.codes = alarmtypes);
@@ -30,11 +31,10 @@ export class AlarmManualComponent implements OnInit {
 
   createAlarm(form: NgForm){
     console.log(form.value);
-    console.log(form.value.company);
     const timestamp = form.value.timestamp;
     const status = 'Activated';
     const code = form.value.code.code;
-    const name = form.value.name;
+    const name = form.value.code.name;
     const type = ""; // esto lo asigna MASS
     const machine= form.value.machine;
     const company = this.authService.getCompany();
@@ -43,6 +43,7 @@ export class AlarmManualComponent implements OnInit {
     // (id, timestamp, status, code, name, type, machine, company, origin, comment)
     this.dataService.createAlarm(timestamp, status, code, name, type, machine, company, origin, comment);
     form.reset();
+    this.router.navigate(['/alarms']);
   }
 
 }

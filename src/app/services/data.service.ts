@@ -45,6 +45,10 @@ export class DataService {
     return this.http.get<Alarm>(environment.apiUrl + '/alarms?id=' + id);
   }
 
+  changeStatusAlarm(id: number, status: string) {
+    return this.http.patch(environment.apiUrl + '/alarms?id=' + id, {status: status});
+  }
+
   createAlarm(timestamp: Date, status: string, code: string, name: string, type: string, machine: string, company: string, origin: string, comment: string) {
     return this.http.post(environment.apiUrl + '/alarms', {
       timestamp: timestamp,

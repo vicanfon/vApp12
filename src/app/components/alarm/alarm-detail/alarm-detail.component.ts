@@ -6,6 +6,7 @@ import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api'
 import {InterventionManualComponent} from '../../intervention/intervention-manual/intervention-manual.component';
 import {InterventionDetailComponent} from '../../intervention/intervention-detail/intervention-detail.component';
 import {FailureType} from '../../../models/failure-type';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-alarm-detail',
@@ -27,30 +28,10 @@ export class AlarmDetailComponent implements OnInit {
     }
     this.dataService.getFailureTypes().subscribe(failuretypes => this.types = failuretypes);
   }
-  activateAlarm(){
-    //change status
-    //save alarm
-    // send notification to mass
-  }
-  interveneAlarm() {
-    // Create Intervention
-    // change status
-    // save alarm and Intervention
-    // send notification to sis
-  }
 
-  dismissAlarm(){
-    //change status
-    //save alarm
-    // send notification to mass
-  }
-  rejectAlarm(){
-    //change status
-    //save alarm
-    // send notification to mass
-  }
 
-  saveAlarm(){
+  saveAlarm(form: NgForm){
+    console.log(form);
     //change status
     //save alarm
     // send notification to mass
@@ -60,8 +41,14 @@ export class AlarmDetailComponent implements OnInit {
     this.dataService.getInterventionbyAlarm(alarmId);
   }
 
-  showIntervention(){
+  changeStatusAlarm(alarmid: number, status: string){
+    this.dataService.changeStatusAlarm(alarmid, status);
+    this.ref.close();
+  }
+
+  createIntervention(){
     const ref = this.dialogService.open(InterventionManualComponent, {
+      data: {alarmid: this.alarm.id },
       header: 'Create Intervention',
       width: '85%',
       contentStyle: {"max-height": "90vw", "overflow": "auto"}

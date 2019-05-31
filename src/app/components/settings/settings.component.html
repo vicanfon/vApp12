@@ -101,7 +101,7 @@
           <label for="code">code</label>
         </div>
         <div class="ui-g-8">
-          <input pInputText id="code" [(ngModel)]="alarmtype.code" />
+          <input pInputText id="code" [(ngModel)]="alarmtype.code" readonly/>
         </div>
       </div>
       <div class="ui-g-12">
@@ -115,8 +115,9 @@
     </div>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton icon="fa fa-close" (click)="delete_at()" label="Delete"></button>
-        <button type="button" pButton icon="fa fa-check" (click)="save_at()" label="Save"></button>
+        <button *ngIf="newAlarmType" type="button" pButton icon="fa fa-close" (click)="create_at()" label="Create"></button>
+        <button *ngIf="!newAlarmType" type="button" pButton icon="fa fa-close" (click)="delete_at()" label="Delete"></button>
+        <button *ngIf="!newAlarmType" type="button" pButton icon="fa fa-check" (click)="save_at()" label="Save"></button>
       </div>
     </p-footer>
   </p-dialog>
@@ -128,7 +129,7 @@
           <label for="id">Id</label>
         </div>
         <div class="ui-g-8">
-          <input pInputText id="id" [(ngModel)]="failuretype.id" />
+          <input pInputText id="id" [(ngModel)]="failuretype.id" readonly/>
         </div>
       </div>
       <div class="ui-g-12">
@@ -142,20 +143,21 @@
     </div>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton icon="fa fa-close" (click)="delete_ft()" label="Delete"></button>
-        <button type="button" pButton icon="fa fa-check" (click)="save_ft()" label="Save"></button>
+        <button *ngIf="newFailureType" type="button" pButton icon="fa fa-close" (click)="create_ft()" label="Create"></button>
+        <button *ngIf="!newFailureType" type="button" pButton icon="fa fa-close" (click)="delete_ft()" label="Delete"></button>
+        <button *ngIf="!newFailureType" type="button" pButton icon="fa fa-check" (click)="save_ft()" label="Save"></button>
       </div>
     </p-footer>
   </p-dialog>
 
-  <p-dialog header="Car Details" [(visible)]="displayDialog_m" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
+  <p-dialog header="Machine Details" [(visible)]="displayDialog_m" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
     <div class="ui-g ui-fluid" *ngIf="machine">
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="id_m">Id</label>
         </div>
         <div class="ui-g-8">
-          <input pInputText id="id_m" [(ngModel)]="machine.id" />
+          <input pInputText id="id_m" [(ngModel)]="machine.id" readonly/>
         </div>
       </div>
       <div class="ui-g-12">
@@ -169,8 +171,9 @@
     </div>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton icon="fa fa-close" (click)="delete_m()" label="Delete"></button>
-        <button type="button" pButton icon="fa fa-check" (click)="save_m()" label="Save"></button>
+        <button *ngIf="newMachine" type="button" pButton icon="fa fa-close" (click)="create_m()" label="Create"></button>
+        <button *ngIf="!newMachine" type="button" pButton icon="fa fa-close" (click)="delete_m()" label="Delete"></button>
+        <button *ngIf="!newMachine" type="button" pButton icon="fa fa-check" (click)="save_m()" label="Save"></button>
       </div>
     </p-footer>
   </p-dialog>

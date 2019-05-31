@@ -1,13 +1,13 @@
-<form>
+<form #f="ngForm">
   <div class="row">
     <h3>Details: {{alarm.name}}</h3>
   </div>
   <div class="row">
-    <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="activateAlarm()">Activate</button>
-    <button class="btn orange" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="dismissAlarm()">Dismiss</button>
-    <button (click)="showIntervention()" class="btn btn-primary blue" type="submit" *ngIf="authService.getRole()=='mass' && (alarm.status == 'Activated' || alarm.status == 'Rejected')" (click)="interveneAlarm()">Intervene</button>
+    <button class="btn btn-primary" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="changeStatusAlarm(alarm.id,'Activated')">Activate</button>
+    <button class="btn orange" type="submit" *ngIf="authService.getRole()!='mass' && alarm.status == 'Detected'" (click)="changeStatusAlarm(alarm.id,'Dismissed')">Dismiss</button>
+    <button (click)="createIntervention()" class="btn btn-primary blue" type="submit" *ngIf="authService.getRole()=='mass' && (alarm.status == 'Activated' || alarm.status == 'Rejected')">Intervene</button>
     <button (click)="currentIntervention()" *ngIf="alarm.status == 'Intervened'" class="btn blue">Intervention</button>
-    <button (click)="saveAlarm()" *ngIf="authService.getCompany()=='mass'" class="btn btn-primary right-aligned">Save</button>
+    <button (click)="saveAlarm(f)" *ngIf="authService.getCompany()=='mass' || alarm.status == 'Detected'" class="btn blue">Save</button>
   </div>
   <div class="row">
     <div class="form-group col-md-3">
@@ -48,7 +48,7 @@
     </div>
     <div class="form-group col-md-6">
       <span for="comment">Comment:</span>
-      <textarea style="height: 100px;" id="comment" name="comment" [value]="alarm.comment" [readOnly]="alarm.status == 'Detected'"></textarea>
+      <textarea  style="height: 100px;" id="comment" name="comment" ngModel={{alarm.comment}} [readOnly]="alarm.status != 'Detected'"></textarea>
     </div>
   </div>
 </form>

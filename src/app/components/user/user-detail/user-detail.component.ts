@@ -3,6 +3,7 @@ import {AuthService} from '../../../services/auth.service';
 import {DataService} from '../../../services/data.service';
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
 import {User} from '../../../models/user.model';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-user-detail',
@@ -19,11 +20,13 @@ export class UserDetailComponent implements OnInit {
   }
 
   saveUser() {
-    this.dataService.createUser();
+    this.dataService.editUser(this.user.mail,this.user.name,this.user.role,this.user.company);
+    this.ref.close();
   }
 
   deleteUser() {
-    this.dataService.deleteUser();
+    this.dataService.deleteUser(this.user.mail);
+    this.ref.close();
   }
 
 }

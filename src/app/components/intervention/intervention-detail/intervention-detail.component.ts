@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {DataService} from '../../../services/data.service';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-intervention-detail',
@@ -26,43 +27,24 @@ export class InterventionDetailComponent implements OnInit {
     this.getIntervention();
   }
 
-  acceptIntervention() {
-    //save comment
-    // accept Intervenion
-    // send notification to mass
+  acceptIntervention(form: NgForm) {
+    this.dataService.editIntervention(this.intervention.id, this.intervention.solution,this.intervention.timestamp,this.intervention.duration,this.config.data.alarmid, "Closed", form.value.comment);
   }
 
-  rejectIntervention() {
-    //change status
-    //save alarm
-    // send notification to mass
+  rejectIntervention(form: NgForm) {
+    this.dataService.editIntervention(this.intervention.id, this.intervention.solution,this.intervention.timestamp,this.intervention.duration,this.config.data.alarmid, "Open", form.value.comment);
   }
 
-  editIntervention() {
-    //change status
-    //save alarm
-    // send notification to mass
+  editIntervention(form: NgForm) {
+    this.dataService.editIntervention(this.intervention.id, this.intervention.solution,this.intervention.timestamp,this.intervention.duration,this.config.data.alarmid, this.intervention.status, form.value.comment);
   }
 
-  /*getIntervention(): void {
-    this.config.data
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (id > 0) {
-      this.dataService.getIntervention(id).subscribe(intervention => this.intervention = intervention);
-      this.fromAlarms = true;
-    }
-  }*/
   getIntervention(): void {
     const alarmid = +this.config.data.alarmid;
     if (alarmid > 0) {
       this.dataService.getInterventionbyAlarm(alarmid).subscribe(intervention => this.intervention = intervention);
       this.fromAlarms = true;
     }
-  }
-
-
-  goBack(): void {
-    this.location.back();
   }
 
 }

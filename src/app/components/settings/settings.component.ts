@@ -24,9 +24,9 @@ export class SettingsComponent implements OnInit {
   newAlarmType: boolean;
   newFailureType: boolean;
   newMachine: boolean;
-  alarmtype: any;
-  failuretype: any;
-  machine: any;
+  alarmtype: AlarmType;
+  failuretype: FailureType;
+  machine: Machine;
   displayDialog_at: boolean;
   displayDialog_ft: boolean;
   displayDialog_m: boolean;
@@ -71,15 +71,45 @@ export class SettingsComponent implements OnInit {
     this.machine = {};
     this.displayDialog_m = true;
   }
+  create_at() {
+    this.dataService.createAlarmType(this.alarmtype.code, this.alarmtype.name);
+    this.displayDialog_at = false;
+  }
   save_at() {
-    /*if (this.newAlarmType)
-      this.dataService.editAlarmType();*/
+    this.dataService.editAlarmType(this.alarmtype.code, this.alarmtype.name);
+    this.displayDialog_at = false;
   }
 
   delete_at() {
-    // this.dataService.deleteAlarmType();
+    this.dataService.deleteAlarmType(this.alarmtype.code);
+    this.displayDialog_at = false;
+  }
+  create_ft() {
+    this.dataService.createFailureType(this.failuretype.name);
+    this.displayDialog_ft = false;
+  }
+  save_ft() {
+    this.dataService.editFailureType(+this.failuretype.id, this.failuretype.name);
+    this.displayDialog_ft = false;
   }
 
+  delete_ft() {
+    this.dataService.deleteFailureType(+this.failuretype.id);
+    this.displayDialog_ft = false;
+  }
+  create_m() {
+    this.dataService.createMachine(this.machine.name);
+    this.displayDialog_m = false;
+  }
+  save_m() {
+    this.dataService.editMachine(+this.machine.id, this.machine.name);
+    this.displayDialog_m = false;
+  }
+
+  delete_m() {
+    this.dataService.deleteMachine(+this.machine.id);
+    this.displayDialog_m = false;
+  }
 
   onRowSelect_ft(event) {
     this.newFailureType = false;
