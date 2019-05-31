@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import {MessageService} from './message.service';
 import {Router} from '@angular/router';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,14 @@ export class AuthService {
   role: string;
   company: string;
 
-  constructor(private messageService: MessageService, private router: Router) { }
+  constructor(private messageService: MessageService, private router: Router, private dataService: DataService) { }
 
   signupUser(username: string, password: string){
     // call to storage to create login and password account
     this.messageService.add('User created');
   }
 
-  signinUser(username: string, password: string){
+  login(username: string, password: string){
     // call to storage to create login and password account
     if (username === "mass" && password === "1234"){
       this.token = "abc";

@@ -23,7 +23,7 @@ export class AlarmComponent implements OnInit {
 
 
 
-constructor(private alarmService: DataService, private authService: AuthService, public dialogService: DialogService) { }
+constructor(private dataService: DataService, private authService: AuthService, public dialogService: DialogService) { }
 
   ngOnInit() {
     this.getAlarms();
@@ -51,6 +51,6 @@ constructor(private alarmService: DataService, private authService: AuthService,
   }
 
   getAlarms(): void {
-    this.alarmService.getAlarms().subscribe(alarms => this.alarms = alarms);
+    this.dataService.getAlarms().subscribe(alarms => this.alarms = alarms);
   }
 }

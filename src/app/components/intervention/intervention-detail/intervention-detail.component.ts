@@ -14,6 +14,7 @@ import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/api';
 export class InterventionDetailComponent implements OnInit {
   @Input() intervention: Intervention;
   fromAlarms: boolean;
+  checkoutForm;
 
   constructor(private authService: AuthService, private dataService: DataService, private route: ActivatedRoute, private location: Location, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
   }
@@ -37,6 +38,12 @@ export class InterventionDetailComponent implements OnInit {
     // send notification to mass
   }
 
+  editIntervention() {
+    //change status
+    //save alarm
+    // send notification to mass
+  }
+
   /*getIntervention(): void {
     this.config.data
     const id = +this.route.snapshot.paramMap.get('id');
@@ -46,9 +53,9 @@ export class InterventionDetailComponent implements OnInit {
     }
   }*/
   getIntervention(): void {
-    const id = +this.config.data.alarmid;
-    if (id > 0) {
-      this.dataService.getIntervention(id).subscribe(intervention => this.intervention = intervention);
+    const alarmid = +this.config.data.alarmid;
+    if (alarmid > 0) {
+      this.dataService.getInterventionbyAlarm(alarmid).subscribe(intervention => this.intervention = intervention);
       this.fromAlarms = true;
     }
   }

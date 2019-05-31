@@ -22,14 +22,6 @@ export class InterventionComponent implements OnInit {
   ngOnInit() {
     this.getInterventions();
 
-    /*id: number;
-    solution: string;
-    comment: string;
-    timestamp: Date;
-    duration: number;
-    alarmCode: string;
-    alarmName: string;*/
-
     this.cols = [
       { field: 'timestamp', header: 'Timestamp' },
       { field: 'solution', header: 'Solution' },

@@ -39,7 +39,9 @@ export class AlarmManualComponent implements OnInit {
     const machine= form.value.machine;
     const company = this.authService.getCompany();
     const origin = "manual";
-    this.dataService.createAlarm(timestamp,status,code,name,type, machine, company, origin);
+    const comment = form.value.comment;
+    // (id, timestamp, status, code, name, type, machine, company, origin, comment)
+    this.dataService.createAlarm(timestamp, status, code, name, type, machine, company, origin, comment);
     form.reset();
   }
 

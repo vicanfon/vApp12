@@ -21,7 +21,6 @@ import {DataService} from './services/data.service';
 import {AuthService} from './services/auth.service';
 import { MessagesComponent } from './components/messages/messages.component';
 import {AuthGuardService} from './services/auth-guard.service';
-import { AdminComponent } from './components/admin/admin.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AlarmManualComponent } from './components/alarm/alarm-manual/alarm-manual.component';
 import { InterventionComponent } from './components/intervention/intervention.component';
@@ -57,7 +56,6 @@ import { UserNewComponent } from './components/user/user-new/user-new.component'
     MachineComponent,
     SigninComponent,
     MessagesComponent,
-    AdminComponent,
     SettingsComponent,
     AlarmManualComponent,
     InterventionComponent,

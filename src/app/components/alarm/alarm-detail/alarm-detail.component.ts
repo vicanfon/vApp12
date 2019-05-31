@@ -57,7 +57,7 @@ export class AlarmDetailComponent implements OnInit {
   }
 
   getLastIntervention(alarmId: number){
-    this.dataService.getIntervention(alarmId);
+    this.dataService.getInterventionbyAlarm(alarmId);
   }
 
   showIntervention(){
