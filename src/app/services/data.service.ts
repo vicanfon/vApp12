@@ -199,7 +199,7 @@ export class DataService {
   }
 
   getUser(mail: string): Observable<User> {
-    return this.http.get<User>(environment.apiUrl + '/users?mail='+mail);
+    return this.http.get<User>(environment.apiUrl + '/users?mail=' + encodeURIComponent(mail));
   }
 
   createUser(mail: string, name: string, role: string, company: string) {

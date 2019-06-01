@@ -42,9 +42,9 @@ export class InMemoryDataService implements InMemoryDbService {
     const stats = { nDetected: 2, nActivated: 5, nIntervened: 3, nDismissed: 2, nRejected: 1, avgSolvingTime: 1.5, frequentFailureTypes: [{code:'12', frequency: 0.3}] }
 
     const users = [
-      { mail: 'pepe@mass.com', name: 'Pepe Pons', role: 'mass', company: 'MASS' },
-      { mail: 'juan@mass.com', name: 'Juan Garcia', role: 'mass', company: 'MASS' },
-      { mail: 'antonio@mass.com', name: 'AntonioPerez', role: 'sis', company: 'SIS' }
+      { mail: 'pepe@mass.com', name: 'Pepe Pons', role: 'mass', company: 'mass' },
+      { mail: 'juan@mass.com', name: 'Juan Garcia', role: 'mass', company: 'mass' },
+      { mail: 'antonio@mass.com', name: 'AntonioPerez', role: 'sis', company: 'sis' }
     ];
 
     return {alarms, interventions, stats, alarmtypes, machines, failuretypes, users};
