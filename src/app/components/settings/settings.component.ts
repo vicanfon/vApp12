@@ -24,9 +24,12 @@ export class SettingsComponent implements OnInit {
   newAlarmType: boolean;
   newFailureType: boolean;
   newMachine: boolean;
-  alarmtype: AlarmType;
+  /*alarmtype: AlarmType;
   failuretype: FailureType;
-  machine: Machine;
+  machine: Machine;*/
+  alarmtype: any;
+  failuretype: any;
+  machine: any;
   displayDialog_at: boolean;
   displayDialog_ft: boolean;
   displayDialog_m: boolean;
