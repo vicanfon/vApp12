@@ -51,6 +51,6 @@ constructor(private dataService: DataService, private authService: AuthService, 
   }
 
   getAlarms(): void {
-    this.dataService.getAlarms().subscribe(alarms => this.alarms = alarms);
+    this.dataService.getAlarmsbyCompany(this.authService.getCompany()).subscribe(alarms => this.alarms = alarms);
   }
 }

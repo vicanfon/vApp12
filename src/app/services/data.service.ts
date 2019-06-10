@@ -38,7 +38,11 @@ export class DataService {
   }
 
   getAlarmsbyCompany(company: string): Observable<Alarm[]> {
-    return this.http.get<Alarm[]>(environment.apiUrl + '/alarms?company=' + company);
+    if(company === 'mass'){
+      return this.http.get<Alarm[]>(environment.apiUrl + '/alarms');
+    }else{
+      return this.http.get<Alarm[]>(environment.apiUrl + '/alarms?company=' + company);
+    }
   }
 
   getAlarm(id: number): Observable<Alarm> {

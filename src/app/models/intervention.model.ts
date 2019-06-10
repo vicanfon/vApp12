@@ -1,6 +1,6 @@
 export class Intervention {
   // composed of data coming from type of alarm, type of failure, etc
-  constructor(public id: number, public solution: string, public comment: string, public timestamp: Date, public duration: number, public alarmCode: string, public alarmName: string, public alarmType: string, public machine: string, public company: string, public status: string){}
+  constructor(public id: number, public solution: string, public comment: string, public timestamp: Date, public duration: number, public alarmCode: string, public alarmName: string, public alarmType: string, public machine: string, public company: string, public status: string, public alarmid: number){}
 }
 export interface Intervention {
   id: number;
@@ -14,4 +14,5 @@ export interface Intervention {
   machine: string;
   company: string;
   status: string;
+  alarmid: number;
 }

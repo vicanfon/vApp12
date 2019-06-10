@@ -13,7 +13,8 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./intervention-detail.component.css']
 })
 export class InterventionDetailComponent implements OnInit {
-  @Input() intervention: Intervention;
+  // @Input() intervention: Intervention;
+  intervention: Intervention;
   fromAlarms: boolean;
   checkoutForm;
 
@@ -21,10 +22,11 @@ export class InterventionDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.config.data && !this.intervention){
+    /*if (this.config.data && !this.intervention){
       this.intervention= this.config.data;
-    }
-    this.getIntervention();
+    }*/
+    // this.intervention = this.config.data;
+    this.dataService.getInterventionbyAlarm(this.config.data.alarmid).subscribe(intervention => {this.intervention = intervention[0]; console.log("intervention: " + JSON.stringify(this.intervention));});
   }
 
   acceptIntervention(form: NgForm) {
@@ -39,12 +41,5 @@ export class InterventionDetailComponent implements OnInit {
     this.dataService.editIntervention(this.intervention.id, this.intervention.solution,this.intervention.timestamp,this.intervention.duration,this.config.data.alarmid, this.intervention.status, form.value.comment);
   }
 
-  getIntervention(): void {
-    const alarmid = +this.config.data.alarmid;
-    if (alarmid > 0) {
-      this.dataService.getInterventionbyAlarm(alarmid).subscribe(intervention => this.intervention = intervention);
-      this.fromAlarms = true;
-    }
-  }
 
 }

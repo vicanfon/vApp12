@@ -14,12 +14,12 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 14, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
       { id: 15, timestamp: new Date(), status: 'Intervened', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
       { id: 16, timestamp: new Date(), status: 'Detected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
-      { id: 16, timestamp: new Date(), status: 'Accepted', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
-      { id: 16, timestamp: new Date(), status: 'Rejected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' }
+      { id: 17, timestamp: new Date(), status: 'Accepted', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' },
+      { id: 18, timestamp: new Date(), status: 'Rejected', code: '12', name: 'alarm 12', type: '1X', machine: 'M1', company: 'SIS', origin: 'automatic', comment: 'It broke like doing X' }
     ];
     const interventions = [
-      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '15', alarmName: 'alarm 15', alarmType: '12', machine: 'M1', company: 'SIS', status: 'open' },
-      { id: 12, solution: "press B", comment: 'You have to press B to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '10', alarmName: 'alarm 11', alarmType: '11', machine: 'M2', company: 'SIS', status: 'close' }
+      { id: 11, solution: "press A", comment: 'You have to press A to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '15', alarmName: 'alarm 15', alarmType: '12', machine: 'M1', company: 'SIS', status: 'open', alarmid: 15 },
+      { id: 12, solution: "press B", comment: 'You have to press B to solve the problem', timestamp: new Date(), duration: 0.5, alarmCode: '10', alarmName: 'alarm 11', alarmType: '11', machine: 'M2', company: 'SIS', status: 'close', alarmid: 18  }
     ];
 
     const alarmtypes= [
@@ -44,7 +44,7 @@ export class InMemoryDataService implements InMemoryDbService {
     const users = [
       { mail: 'pepe@mass.com', name: 'Pepe Pons', role: 'mass', company: 'mass' },
       { mail: 'juan@mass.com', name: 'Juan Garcia', role: 'mass', company: 'mass' },
-      { mail: 'antonio@mass.com', name: 'AntonioPerez', role: 'sis', company: 'sis' }
+      { mail: 'antonio@sis.com', name: 'AntonioPerez', role: 'sis', company: 'sis' }
     ];
 
     return {alarms, interventions, stats, alarmtypes, machines, failuretypes, users};
