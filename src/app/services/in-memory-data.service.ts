@@ -39,7 +39,20 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 3, name: "Failure 3" }
     ];
 
-    const stats = { nDetected: 2, nActivated: 5, nIntervened: 3, nDismissed: 2, nRejected: 1, avgSolvingTime: 1.5, frequentFailureTypes: [{code:'12', frequency: 0.3}] }
+    const stats = [{
+      nDetected: 2,
+      nActivated: 5,
+      nIntervened: 3,
+      nDismissed: 2,
+      nRejected: 1,
+      avgSolvingTime: 1.5,
+      company: 'sis',
+      frequentfailuretypes: {
+        codes: ['12','11','15'],
+        frequencies: [0.3,0.6,0.1]
+      }
+    }];
+
 
     const users = [
       { mail: 'pepe@mass.com', name: 'Pepe Pons', role: 'mass', company: 'mass' },

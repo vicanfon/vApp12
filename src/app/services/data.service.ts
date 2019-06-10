@@ -170,8 +170,13 @@ export class DataService {
 
   // get stats
 
-  getStats(): Observable<Stats> {
-    return this.http.get<Stats>(environment.apiUrl + '/stats');
+  getStatsbyCompany(company: string): Observable<Stats[]> {
+    //return this.http.get<Stats>(environment.apiUrl + '/stats');
+    if (company === 'mass') {
+      return this.http.get<Stats[]>(environment.apiUrl + '/stats');
+    } else {
+      return this.http.get<Stats[]>(environment.apiUrl + '/stats?company=' + company);
+    }
   }
 
   // get machines

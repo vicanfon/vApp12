@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
 import {Machine} from '../../models/machine.model';
-import {Stats} from '../../models/stats.model';
+import {FrequentFailures, Stats} from '../../models/stats.model';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -19,13 +19,17 @@ export class DashboardComponent implements OnInit {
   constructor(private dataService: DataService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.getMachines();
-    this.getStats();
+    console.log(this.authService.getCompany());
+    // this.dataService.getStatsbyCompany(this.authService.getCompany()).subscribe(stats => {this.stats = stats[0]; console.log('stats: '+ JSON.stringify(stats[0])); });
+    this.dataService.getStatsbyCompany(this.authService.getCompany()).subscribe(stats => {this.stats = stats[0]; this.showChart(stats[0].frequentfailuretypes);});
+  }
+
+  showChart(ff: FrequentFailures){
     this.data = {
-      labels: ['A','B','C'],
+      labels: ff.codes,
       datasets: [
         {
-          data: [300, 50, 100],
+          data: ff.frequencies,
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -38,12 +42,5 @@ export class DashboardComponent implements OnInit {
           ]
         }]
     };
-  }
-
-  getMachines(): void {
-    this.dataService.getMachines().subscribe(machines => this.machines = machines);
-  }
-  getStats(): void {
-    this.dataService.getStats().subscribe(stats => this.stats = stats);
   }
 }
