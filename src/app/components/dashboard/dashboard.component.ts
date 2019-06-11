@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   machines: Machine[];
   stats: Stats;
   data: any;
+  
+  hellomsg : any;
 
   constructor(private dataService: DataService, private authService: AuthService) { }
 
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.authService.getCompany());
     // this.dataService.getStatsbyCompany(this.authService.getCompany()).subscribe(stats => {this.stats = stats[0]; console.log('stats: '+ JSON.stringify(stats[0])); });
     this.dataService.getStatsbyCompany(this.authService.getCompany()).subscribe(stats => {this.stats = stats[0]; this.showChart(stats[0].frequentfailuretypes);});
+    this.dataService.getHello().subscribe(response => {this.hellomsg = response},err=>{console.log(err)});
   }
 
   showChart(ff: FrequentFailures){
